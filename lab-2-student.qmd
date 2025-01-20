@@ -107,6 +107,8 @@ represent:
 ```{r}
 #| label: load-data
 
+surveys <- read_csv("data/surveys.csv")
+
 ```
 
 **2. What are the dimensions (# of rows and columns) of these data?**
