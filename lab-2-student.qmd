@@ -390,17 +390,25 @@ We're going to use the `aov()` function to carry out an ANOVA.
 
 **17. Using `aov()`, complete the code below to carry out the analysis.** You 
 might want to look up the help documentation for `aov()`.
+```{r}
+#| label: anova-help
+
+help(aov)
+```
+
 
 ```{r}
 #| label: anova
 
-species_mod <- aov()
+species_mod <- aov(formula = weight ~ species, 
+                   data = surveys)
 
 summary(species_mod)
 ```
 
 **18. Based on the results of the ANOVA F-test, draw a conclusion in context of the hypotheses. Make sure to cite appropriate output from above.**
 
+Based on the ANOVA F-test there is significant evidence that at least one mean is significantly different from the rest, meaning that species has an effect on mean weight of an animal. We can draw this conclusion based upon the large F-value of 19,916 and an extremely low p-value of <2e-16 based on the standard significance level of .05.
 
 # Lab 2 Submission
 
