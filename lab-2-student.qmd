@@ -158,14 +158,9 @@ the $x$-axis) and `hindfoot_length` (on the $y$-axis).**
 #| label: scatterplot
 
 ggplot(data = surveys,
-<<<<<<< HEAD
-       mapping = aes(x = weight, y = hindfoot_length)) + 
+       mapping = aes(x = weight, 
+                     y = hindfoot_length)) + 
   geom_point()
-=======
-       mapping = aes(x = weight, y = hindfoot_length, colour = species)) +
-geom_point(alpha = .20)
->>>>>>> 6188f88e20d2280ead0356ba028f6ef9ab6ea4dc
-
 ```
 
 We can see there are **a lot** of points plotted on top of each other. Let's try and modify this plot to extract more information from it.
@@ -173,7 +168,7 @@ We can see there are **a lot** of points plotted on top of each other. Let's try
 **5. Let's add transparency (`alpha`) to the points, to make the points more transparent and (possibly) easier to see.**
 
 ```{r}
-#| label: scatterplot
+#| label: scatterplot transparent 
 
 ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
@@ -188,13 +183,13 @@ subsets and see if that allows for us to see the trends a bit better.
 **6. Facet your scatterplot by `species`.**
 
 ```{r}
-#| label: scatterplot
+#| label: scatterplot facet
 
 ggplot(data = surveys,
        mapping = aes(x = weight, 
                      y = hindfoot_length, 
                      colour = species)) +
-geom_point(alpha = .20) + 
+geom_point(alpha = .15) + 
   facet_wrap(~species)
   
 ```
@@ -204,13 +199,13 @@ geom_point(alpha = .20) +
 **7. No plot is complete without axis labels and a title. Include reader friendly labels and a title to your plot.**
 
 ```{r}
-#| label: scatterplot
+#| label: scatterplot label
 
 ggplot(data = surveys,
        mapping = aes(x = weight, 
                      y = hindfoot_length, 
                      colour = species)) +
-geom_point(alpha = .20) + 
+geom_point(alpha = .15) + 
   facet_wrap(~species) +
   labs(x = "Weight (grams)",
        y = "Hind Foot Length (mm)", 
@@ -224,13 +219,13 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 **8. Specify your $y$-axis label to be empty and move the $y$-axis label into the subtitle.** 
 
 ```{r}
-#| label: scatterplot
+#| label: scatterplot final
 
 ggplot(data = surveys,
        mapping = aes(x = weight, 
                      y = hindfoot_length, 
                      colour = species)) +
-geom_point(alpha = .20) + 
+geom_point(alpha = .15) + 
   facet_wrap(~species) +
   labs(x = "Weight (grams)",
        y = "", 
