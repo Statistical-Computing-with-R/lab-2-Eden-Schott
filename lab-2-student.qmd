@@ -168,7 +168,7 @@ We can see there are **a lot** of points plotted on top of each other. Let's try
 **5. Let's add transparency (`alpha`) to the points, to make the points more transparent and (possibly) easier to see.**
 
 ```{r}
-#| label: scatterplot transparent 
+#| label: scatterplot-transparent 
 
 ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
@@ -183,7 +183,7 @@ subsets and see if that allows for us to see the trends a bit better.
 **6. Facet your scatterplot by `species`.**
 
 ```{r}
-#| label: scatterplot facet
+#| label: scatterplot-facet
 
 ggplot(data = surveys,
        mapping = aes(x = weight, 
@@ -199,7 +199,7 @@ geom_point(alpha = .15) +
 **7. No plot is complete without axis labels and a title. Include reader friendly labels and a title to your plot.**
 
 ```{r}
-#| label: scatterplot label
+#| label: scatterplot-label
 
 ggplot(data = surveys,
        mapping = aes(x = weight, 
@@ -219,7 +219,7 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 **8. Specify your $y$-axis label to be empty and move the $y$-axis label into the subtitle.** 
 
 ```{r}
-#| label: scatterplot final
+#| label: scatterplot-final
 
 ggplot(data = surveys,
        mapping = aes(x = weight, 
@@ -237,17 +237,31 @@ geom_point(alpha = .15) +
 
 ## Boxplots
 
+**10. Create side-by-side boxplots to visualize the distribution of weight within each species.**
+
 ```{r}
 #| label: boxplot
 
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species)) +
+  geom_boxplot()
 
 ```
-
-**10. Create side-by-side boxplots to visualize the distribution of weight within each species.**
 
 A fundamental complaint of boxplots is that they do not plot the raw data. However, with **ggplot** we can add the raw points on top of the boxplots!
 
 **11. Add another layer to your previous plot that plots each observation.**
+
+```{r}
+#| label: boxplot-with-raw-data
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species)) +
+  geom_boxplot() + 
+  geom_point()
+```
 
 <!-- Modify the plot you made for question 10! -->
 
@@ -255,6 +269,16 @@ Alright, this should look less than optimal. Your points should appear rather st
 a bit, using `geom_jitter()`.
 
 **12. Remove the previous layer and include a `geom_jitter()` layer instead.**
+
+```{r}
+#| label: boxplot-with-jitter
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species)) +
+  geom_boxplot() + 
+  geom_jitter()
+```
 
 <!-- Continue to modify the plot you made for question 10! -->
 
@@ -264,6 +288,17 @@ That should look a bit better! But its really hard to see the points when everyt
 to use whatever color you wish! Some of my favorites are "orange3" and
 "steelblue".
 
+```{r}
+#| label: boxplot-with-jitter-color
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species,
+                     colour = species)) +
+  geom_boxplot() + 
+  geom_jitter(alpha = .05)
+```
+
 <!-- Continue to modify the plot you made for question 10! -->
 
 Great! Now that you can see the points, you should notice something odd: there
@@ -271,12 +306,42 @@ are two colors of points still being plotted. Some of the observations are being
 
 **14. Inspect the help file for `geom_boxplot()` and see how you can remove the outliers from being plotted by `geom_boxplot()`. Make this change in your code!**
 
+```{r}
+#| label: inspect-boxplot
+
+help("geom_boxplot")
+```
+
 <!-- Continue to modify the plot you made for question 10! -->
 
+```{r}
+#| label: boxplot-without-outliers
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species,
+                     colour = species)) +
+  geom_boxplot(outliers = FALSE) + 
+  geom_jitter(alpha = .05)
+```
 Some small changes can make **big** differences to plots. One of these changes
 are better labels for a plot's axes and legend.
 
 **15. Modify the $x$-axis and $y$-axis labels to describe what is being plotted. Be sure to include any necessary units! You might also be getting overlap in the species names -- use `theme(axis.text.x = ____)` or `theme(axis.text.y = ____)` to turn the species axis labels 45 degrees.**
+
+```{r}
+#| label: boxplot-label
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species,
+                     colour = species)) +
+  geom_boxplot(outliers = FALSE) + 
+  geom_jitter(alpha = .05) +
+  labs(x = "Weight",
+       y = "Species",
+       title = "Distribution of Weight within Each Species")
+```
 
 <!-- Continue to modify the plot you made for question 10! -->
 
@@ -286,6 +351,16 @@ Some people (and journals) prefer for boxplots to be stacked with a specific ori
 
 ```{r}
 #| label: rotated-boxplot
+
+ggplot(data = surveys,
+       mapping = aes(y = weight,
+                     x = species,
+                     colour = species)) +
+  geom_boxplot(outliers = FALSE) + 
+  geom_jitter(alpha = .05) +
+  labs(y = "Weight",
+       x = "Species",
+       title = "Distribution of Weight within Each Species")
 
 ```
 
