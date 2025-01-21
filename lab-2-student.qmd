@@ -5,6 +5,7 @@ format: html
 editor: source
 embed-resources: true
 code-tools: true
+echo: true
 execute: 
   message: false
   error: false
