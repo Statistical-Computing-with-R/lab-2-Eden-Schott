@@ -25,7 +25,28 @@ you would like to include, feel free to toss those in the YAML, too!
 Next, create a setup code chunk to load the packages and read in the
 `surveys.csv` data file exactly how you did in Lab 2.
 
+```{r}
+#| label: setup
+
+library(tidyverse)
+surveys <- read_csv("data/surveys.csv")
+```
+
 Finally, create another code chunk and paste in your code from Question 14 or Question 15 in Lab 2 -- we will be modifying the box plot of weights by species!
+
+```{r}
+#| label: boxplot
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species,
+                     colour = species)) +
+  geom_boxplot(outliers = FALSE) + 
+  geom_jitter(alpha = .05) +
+  labs(x = "Weight",
+       y = "Species",
+       title = "Distribution of Weight within Each Species")
+```
 
 # Medium: Ridge Plots
 
