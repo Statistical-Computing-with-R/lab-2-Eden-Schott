@@ -108,6 +108,7 @@ cdPalette_grey <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#007
 
 # A vector of a RG color deficient friendly palette with black:
 cdPalette_blk <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
 ```
 
 ::: callout-note
@@ -143,6 +144,25 @@ use (e.g. `scale_color_aaas()`).
 :::
 
 > **In this challenge you are expected to use this information to modify the boxplots you created Lab 2. First, you are to color the boxplots based on the variable `genus`. Next, you are to change the colors used for `genus` using either manual color specification or any of the packages listed here (or others!).**
+
+```{r}
+#| label: color-boxplot
+
+#my custom color vector
+eden_palette <- c("#58a81d", "#ca94f5", "#1d9ca8", "#a8741d", "#e663b1", "#e6cc63", "#b9282b", "#6c63e6")
+
+ggplot(data = surveys,
+       mapping = aes(x = weight,
+                     y = species,
+                     colour = genus)) +
+  geom_boxplot(outliers = FALSE) + 
+  geom_jitter(alpha = .05) +
+  labs(x = "Weight",
+       y = "Species",
+       colour = "Genus",
+       title = "Distribution of Weight within Each Species") +
+  scale_color_manual(values = eden_palette)
+```
 
 # Hot: Exploring `ggplot2` Annotation
 
